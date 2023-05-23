@@ -28,7 +28,7 @@ export class RestroomEntity extends BaseEntity {
   @Column({ type: 'boolean' })
   disabled: boolean;
 
-  @Column({ length: 64 })
+  @Column({ length: 64, nullable: true })
   extra: string;
 
   @ManyToOne(() => BuildingEntity, (building) => building.restrooms)
@@ -47,7 +47,7 @@ export class RestroomEntity extends BaseEntity {
     vanity: boolean;
     bidet: boolean;
     disabled: boolean;
-    extra: string;
+    extra?: string;
     building: BuildingEntity;
   }) {
     super();

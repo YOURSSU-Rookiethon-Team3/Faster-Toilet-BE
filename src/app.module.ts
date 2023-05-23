@@ -9,6 +9,7 @@ import { BuildingEntity } from 'entity/building.entity';
 import { RestroomEntity } from 'entity/restroom.entity';
 import { VisitorEntity } from 'entity/visitor.entity';
 import { BuildingModule } from './domain/building/building.module';
+import { RestroomModule } from './domain/restroom/restroom.module';
 
 dotenv.config({
   path: path.resolve(process.env.NODE_ENV === 'production' ? '.env' : '.env'),
@@ -28,6 +29,7 @@ dotenv.config({
       synchronize: process.env.DB_SYNCHRONIZE === 'true',
     }),
     BuildingModule,
+    RestroomModule,
   ],
   controllers: [AppController],
   providers: [AppService],
