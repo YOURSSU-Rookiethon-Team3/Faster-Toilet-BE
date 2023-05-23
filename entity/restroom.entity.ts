@@ -32,11 +32,13 @@ export class RestroomEntity extends BaseEntity {
   extra: string;
 
   @ManyToOne(() => BuildingEntity, (building) => building.restrooms)
-  @JoinColumn({ name: 'pk_building' })
+  @JoinColumn({
+    name: 'buildingId',
+  })
   building: BuildingEntity;
 
   @Column({ type: 'int' })
-  pk_building: number;
+  buildingId: number;
 
   constructor(restroom: {
     floor: number;

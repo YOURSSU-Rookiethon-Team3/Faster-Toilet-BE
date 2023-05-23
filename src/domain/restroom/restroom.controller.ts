@@ -6,19 +6,21 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { RestroomService } from './restroom.service';
 import { RestroomDto } from './dto/restroom.dto';
 import { PostRestroomReqDto } from './dto/postRestroom.req.dto';
 import { PatchRestroomReqDto } from './dto/patchRestroom.req.dto';
+import { GetRestroomReqDto } from './dto/getRestroom.req.dto';
 
 @Controller('restrooms')
 export class RestroomController {
   constructor(private readonly restroomService: RestroomService) {}
 
   @Get('/')
-  async getRestrooms() {
-    const restrooms = await this.restroomService.getRestrooms({});
+  async getRestrooms(@Query() query: GetRestroomReqDto) {
+    const restrooms = await this.restroomService.getRestrooms(query);
     return {
       restrooms: restrooms.map((restroom) => new RestroomDto(restroom)),
     };

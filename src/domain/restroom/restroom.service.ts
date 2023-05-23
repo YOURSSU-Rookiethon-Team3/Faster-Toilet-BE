@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BuildingEntity } from 'entity/building.entity';
 import { RestroomEntity } from 'entity/restroom.entity';
@@ -32,7 +36,7 @@ export class RestroomService {
   }
 
   async getRestrooms(filter: {
-    pk_building?: number;
+    buildingId?: number;
   }): Promise<RestroomEntity[]> {
     const restrooms = await this.restroomRepository.find({
       relations: ['building'],
@@ -47,7 +51,7 @@ export class RestroomService {
     });
 
     if (!building) {
-      throw new NotFoundException({
+      throw new BadRequestException({
         code: 'BUILDING_NOT_FOUND',
         message: '건물을 찾을 수 없습니다.',
       });
