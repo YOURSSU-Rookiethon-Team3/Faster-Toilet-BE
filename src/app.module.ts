@@ -10,6 +10,7 @@ import { RestroomEntity } from 'entity/restroom.entity';
 import { VisitorEntity } from 'entity/visitor.entity';
 import { BuildingModule } from './domain/building/building.module';
 import { RestroomModule } from './domain/restroom/restroom.module';
+import { VisitorModule } from './domain/visitor/visitor.module';
 
 dotenv.config({
   path: path.resolve(process.env.NODE_ENV === 'production' ? '.env' : '.env'),
@@ -30,6 +31,7 @@ dotenv.config({
     }),
     BuildingModule,
     RestroomModule,
+    VisitorModule,
   ],
   controllers: [AppController],
   providers: [AppService],
