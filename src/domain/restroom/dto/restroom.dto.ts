@@ -3,6 +3,7 @@ import { BuildingDto } from 'src/domain/building/dto/building.dto';
 
 export class RestroomDto {
   id: number;
+  floor: number;
   location: string;
   isMale: boolean;
   rating: number;
@@ -15,6 +16,8 @@ export class RestroomDto {
   createdAt: string;
 
   constructor(restroomEntity: RestroomEntity) {
+    this.id = restroomEntity.id;
+    this.floor = restroomEntity.floor;
     this.location = restroomEntity.location;
     this.isMale = restroomEntity.isMale;
     this.rating = restroomEntity.rating;
