@@ -1,6 +1,8 @@
 import { RestroomEntity } from 'entity/restroom.entity';
 import { BuildingDto } from 'src/domain/building/dto/building.dto';
 
+export type Facility = 'vanity' | 'bidet' | 'disabled';
+
 export class RestroomDto {
   id: number;
   floor: number;
@@ -14,6 +16,7 @@ export class RestroomDto {
   extra: string;
   building?: BuildingDto;
   createdAt: string;
+  facilities: Facility[];
 
   constructor(restroomEntity: RestroomEntity) {
     this.id = restroomEntity.id;
@@ -31,5 +34,10 @@ export class RestroomDto {
     if (restroomEntity.building) {
       this.building = new BuildingDto(restroomEntity.building);
     }
+
+    this.facilities = [];
+    if (this.vanity) this.facilities.push('vanity');
+    if (this.bidet) this.facilities.push('bidet');
+    if (this.disabled) this.facilities.push('disabled');
   }
 }
