@@ -7,6 +7,7 @@ export class BuildingDto {
   restrooms?: RestroomDto[];
   floors?: number[];
   createdAt: string;
+  recommendRestroom: RestroomDto;
 
   constructor(buildingEntity: BuildingEntity) {
     this.id = buildingEntity.id;
@@ -14,7 +15,6 @@ export class BuildingDto {
     this.createdAt = new Date(buildingEntity.createdAt).toISOString();
     this.floors = [];
 
-    console.log(buildingEntity.restrooms);
     if (buildingEntity.restrooms) {
       this.restrooms = buildingEntity.restrooms?.map(
         (restroom) => new RestroomDto(restroom),
@@ -24,7 +24,18 @@ export class BuildingDto {
         floors.add(restroom.floor);
       });
       this.floors = Array.from(floors).sort((a, b) => a - b);
-      console.log(this.floors);
+    }
+
+    if (buildingEntity.restrooms.length !== 0) {
+      const recommendRestroom = buildingEntity.restrooms.reduce(
+        (prev, curr) =>
+          prev.rating > curr.rating && 1 - prev.floor > 1 - curr.floor
+            ? prev
+            : curr,
+        buildingEntity.restrooms[0],
+      );
+
+      this.recommendRestroom = new RestroomDto(recommendRestroom);
     }
   }
 }
