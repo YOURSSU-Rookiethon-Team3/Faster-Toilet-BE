@@ -4,6 +4,9 @@ import { BuildingEntity } from './building.entity';
 
 @Entity('restroom')
 export class RestroomEntity extends BaseEntity {
+  @Column({ nullable: true })
+  alias?: string;
+
   @Column({ type: 'int' })
   floor: number;
 
@@ -41,6 +44,7 @@ export class RestroomEntity extends BaseEntity {
   buildingId: number;
 
   constructor(restroom: {
+    alias: string;
     floor: number;
     location: string;
     isMale: boolean;
@@ -54,6 +58,7 @@ export class RestroomEntity extends BaseEntity {
   }) {
     super();
     if (!restroom) return;
+    this.alias = restroom.alias;
     this.floor = restroom.floor;
     this.location = restroom.location;
     this.isMale = restroom.isMale;

@@ -1,6 +1,10 @@
 import { IsBoolean, IsInt, IsOptional, IsString } from 'class-validator';
 
 export class PatchRestroomReqDto {
+  @IsString()
+  @IsOptional()
+  alias: string;
+
   @IsInt()
   @IsOptional()
   floor: number;
