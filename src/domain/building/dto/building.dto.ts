@@ -26,7 +26,7 @@ export class BuildingDto {
       this.floors = Array.from(floors).sort((a, b) => a - b);
     }
 
-    if (buildingEntity.restrooms.length !== 0) {
+    if (buildingEntity.restrooms && buildingEntity.restrooms.length !== 0) {
       const recommendRestroom = buildingEntity.restrooms.reduce(
         (prev, curr) => {
           if (prev.floor < 0) return curr;
