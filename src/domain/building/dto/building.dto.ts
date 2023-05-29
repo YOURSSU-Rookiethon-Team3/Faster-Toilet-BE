@@ -28,11 +28,12 @@ export class BuildingDto {
 
     if (buildingEntity.restrooms.length !== 0) {
       const recommendRestroom = buildingEntity.restrooms.reduce(
-        (prev, curr) =>
-          prev.rating > curr.rating && prev.floor < curr.floor && curr.floor > 0
-            ? prev
-            : curr,
-        buildingEntity.restrooms[0],
+        (prev, curr) => {
+          if (prev.floor < 0) return curr;
+          if (prev.rating <= curr.rating && prev.floor >= curr.floor)
+            return curr;
+          return prev;
+        },
       );
 
       this.recommendRestroom = new RestroomDto(recommendRestroom);
