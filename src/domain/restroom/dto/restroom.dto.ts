@@ -5,6 +5,7 @@ export type Facility = 'vanity' | 'bidet' | 'disabled';
 
 export class RestroomDto {
   id: number;
+  alias?: string;
   floor: number;
   location: string;
   isMale: boolean;
@@ -20,6 +21,7 @@ export class RestroomDto {
 
   constructor(restroomEntity: RestroomEntity) {
     this.id = restroomEntity.id;
+    this.alias = restroomEntity.alias;
     this.floor = restroomEntity.floor;
     this.location = restroomEntity.location;
     this.isMale = restroomEntity.isMale;

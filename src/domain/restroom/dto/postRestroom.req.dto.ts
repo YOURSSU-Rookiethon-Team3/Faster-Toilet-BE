@@ -1,6 +1,10 @@
 import { IsBoolean, IsInt, IsOptional, IsString } from 'class-validator';
 
 export class PostRestroomReqDto {
+  @IsString()
+  @IsOptional()
+  alias: string;
+
   @IsInt()
   floor: number;
 

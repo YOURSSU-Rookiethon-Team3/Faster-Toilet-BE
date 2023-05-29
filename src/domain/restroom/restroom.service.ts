@@ -79,6 +79,7 @@ export class RestroomService {
     }
 
     const update: any = {};
+    if (dto.alias) update['alias'] = dto.alias;
     if (dto.floor) update['floor'] = dto.floor;
     if (dto.location) update['location'] = dto.location;
     if (dto.isMale) update['isMale'] = dto.isMale;
